@@ -35,7 +35,8 @@ public class TC10 {
 		driver.findElementById("username").sendKeys("matschie@testleaf.com");
 		driver.findElementById("password").sendKeys("India@123");
 		driver.findElementById("Login").click();
-		Thread.sleep(13000);
+		Thread.sleep(14000);
+		//mmmmmmmmmmmmmm
 		List<WebElement> lightningSwitch = driver.findElementsByXPath("//a[@class='switch-to-lightning']"); if(lightningSwitch.size() !=0) { driver.findElementByXPath("//a[@class='switch-to-lightning']").click(); }
 		driver.executeScript("arguments[0].click();",driver.findElementByXPath("//span[@class=\"uiImage\"]//img[@class=\"icon noicon\"]"));
 		Thread.sleep(4000);
