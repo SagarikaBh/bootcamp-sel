@@ -1,5 +1,7 @@
 package com.seleniumbootcamp;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -16,30 +18,20 @@ import javax.swing.text.DateFormatter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class TC10 {
+public class TestCase10 extends BaseClass {
 
-	public static void main(String[] args) throws InterruptedException 
+	
+   //19/12/2016
+	@Test(dataProvider = "sendData")
+	public void testCase (String streetName, String cityName, String state,String zip,String country) throws InterruptedException
 	{
+		
 		Random random = new Random();
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		ChromeDriver driver = new ChromeDriver(options);
-		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
-		driver.get("https://login.salesforce.com/");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.findElementById("username").sendKeys("matschie@testleaf.com");
-		driver.findElementById("password").sendKeys("India@123");
-		driver.findElementById("Login").click();
-		Thread.sleep(14000);
-		//mmmmmmmmmmmmmm
-		List<WebElement> lightningSwitch = driver.findElementsByXPath("//a[@class='switch-to-lightning']"); if(lightningSwitch.size() !=0) { driver.findElementByXPath("//a[@class='switch-to-lightning']").click(); }
-		driver.executeScript("arguments[0].click();",driver.findElementByXPath("//span[@class=\"uiImage\"]//img[@class=\"icon noicon\"]"));
-		Thread.sleep(4000);
 		driver.findElementByXPath("//div[@class=\"profile-card-footer\"]//a[contains(text(),'Switch')]").click();
 		Thread.sleep(10000);
 		driver.executeScript("arguments[0].click();",driver.findElementByXPath("//span[@id=\"createNewLabel\"]"));	
@@ -47,12 +39,12 @@ public class TC10 {
 		Thread.sleep(8000);
 		String accountName = "Boot Camp Puppeteer Sagarika " + random.nextInt(10000);
 		driver.findElementByXPath("//input[@id=\"acc2\"]").sendKeys(accountName);
-		driver.findElementByXPath("//textarea[@id=\"acc17street\"]").sendKeys("test123");
-		driver.findElementByXPath("//input[@id=\"acc17city\"]").sendKeys("test");
-		driver.findElementByXPath("//input[@id=\"acc17state\"]").sendKeys("bootcamp");
-		driver.findElementByXPath("//input[@id=\"acc17zip\"]").sendKeys("786789");
-		driver.findElementByXPath("//input[@id=\"acc17country\"]").sendKeys("India");
-		driver.findElementByXPath("//a[text()=\"Copy Billing Address to Shipping Address\"]").click();
+		driver.findElementByXPath("//textarea[@id=\"acc17street\"]").sendKeys(streetName);
+		driver.findElementByXPath("//input[@id=\"acc17city\"]").sendKeys(cityName);
+		driver.findElementByXPath("//input[@id=\"acc17state\"]").sendKeys(state);
+		driver.findElementByXPath("//input[@id=\"acc17zip\"]").sendKeys(zip);
+		driver.findElementByXPath("//input[@id=\"acc17country\"]").sendKeys(country);
+		driver.findElementByXPath("//a[contains(text(),\"Copy Billing Address to Shipping Address\")]").click();
 		driver.findElementByXPath("//span[starts-with(@class,\"dateInput\")]//input").click();
 		//*****************need to validate field**************
 
@@ -81,8 +73,24 @@ public class TC10 {
 			System.out.println("Test case Failed!!!");
 		}
 		List<WebElement> lightningSwitch1 = driver.findElementsByXPath("//a[@class='switch-to-lightning']"); if(lightningSwitch1.size() !=0) { driver.findElementByXPath("//a[@class='switch-to-lightning']").click(); }
+	}
 		
-		
+		@DataProvider()
+		public String[][] sendData() {
+			String[][] data = new String[1][5];
+
+			data[0][0] = "test1234";
+			data[0][1] = "test";
+			data[0][2] = "bootcamp";
+
+			data[0][3] = "786789";
+			data[0][4] = "India";
+			//data[1][2] = "B";
+
+			return data;
+		}
+
+	
 	}
 
-}
+
