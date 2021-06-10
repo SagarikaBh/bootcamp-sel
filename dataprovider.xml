@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite" thread-count="5" parallel="none" verbose="7" >
+<suite name="Suite" thread-count="5" parallel="none" verbose="5" >
   <test name="Test" preserve-order="true">
   <classes>
-      <class name="com.seleniumbootcamp.TestCase10"/>
+      <class name="dataproviderexcel.TestCase10"/>
       <parameter name="username" value="matschie@testleaf.com" />
   	  <parameter name="password" value="India@123" />
     </classes>

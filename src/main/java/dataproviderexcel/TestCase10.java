@@ -1,4 +1,4 @@
-package com.seleniumbootcamp;
+package dataproviderexcel;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -18,22 +18,28 @@ import javax.swing.text.DateFormatter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestCase10 extends BaseClass {
-
 	
+	@BeforeTest
+	public void setData()
+	{
+    excelFileName="./TestData/PracticeDataProvider.xlsx";
+
+	}
+		
    //19/12/2016
-	@Test(dataProvider = "sendData")
+	@Test(dataProvider = "fetchData")
 	public void testCase (String streetName, String cityName, String state,String zip,String country) throws InterruptedException
 	{
-		
+		////span[@class="uiImage"]//img[contains(@class,"icon noicon")]
 		Random random = new Random();
-		driver.executeScript("arguments[0].click();",driver.findElementByXPath("//span[text()='View profile']"));	
-		//driver.findElementByXPath("//div[contains(@class,\"profileTrigger branding-user-profile bgimg\")]//span//img").click();
+		
+		driver.findElementByXPath("//span[@class=\"uiImage\"]//img[contains(@class,\"icon noicon\")]").click();
 		driver.findElementByXPath("//div[@class=\"profile-card-footer\"]//a[contains(text(),'Switch')]").click();
 		Thread.sleep(10000);
 		driver.executeScript("arguments[0].click();",driver.findElementByXPath("//span[@id=\"createNewLabel\"]"));	
@@ -75,21 +81,7 @@ public class TestCase10 extends BaseClass {
 			System.out.println("Test case Failed!!!");
 		}
 		List<WebElement> lightningSwitch1 = driver.findElementsByXPath("//a[@class='switch-to-lightning']"); if(lightningSwitch1.size() !=0) { driver.findElementByXPath("//a[@class='switch-to-lightning']").click(); }
-	}
-		
-		@DataProvider()
-		public String[][] sendData() {
-			String[][] data = new String[1][5];
-
-			data[0][0] = "test1234";
-			data[0][1] = "test";
-			data[0][2] = "bootcamp";
-
-			data[0][3] = "786789";
-			data[0][4] = "India";
-			//data[1][2] = "B";
-
-			return data;
+	
 		}
 
 	

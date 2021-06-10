@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class TestCase10 extends BaseClass {
+public class TestCaseDataProviderPractice extends BaseClass {
 
 	
    //19/12/2016
@@ -32,8 +32,6 @@ public class TestCase10 extends BaseClass {
 	{
 		
 		Random random = new Random();
-		driver.executeScript("arguments[0].click();",driver.findElementByXPath("//span[text()='View profile']"));	
-		//driver.findElementByXPath("//div[contains(@class,\"profileTrigger branding-user-profile bgimg\")]//span//img").click();
 		driver.findElementByXPath("//div[@class=\"profile-card-footer\"]//a[contains(text(),'Switch')]").click();
 		Thread.sleep(10000);
 		driver.executeScript("arguments[0].click();",driver.findElementByXPath("//span[@id=\"createNewLabel\"]"));	

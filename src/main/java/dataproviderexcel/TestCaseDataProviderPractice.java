@@ -1,4 +1,4 @@
-package com.seleniumbootcamp;
+package dataproviderexcel;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -21,9 +21,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.seleniumbootcamp.BaseClass;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class TestCase10 extends BaseClass {
+public class TestCaseDataProviderPractice extends plainBaseClass {
 
 	
    //19/12/2016
@@ -32,8 +34,6 @@ public class TestCase10 extends BaseClass {
 	{
 		
 		Random random = new Random();
-		driver.executeScript("arguments[0].click();",driver.findElementByXPath("//span[text()='View profile']"));	
-		//driver.findElementByXPath("//div[contains(@class,\"profileTrigger branding-user-profile bgimg\")]//span//img").click();
 		driver.findElementByXPath("//div[@class=\"profile-card-footer\"]//a[contains(text(),'Switch')]").click();
 		Thread.sleep(10000);
 		driver.executeScript("arguments[0].click();",driver.findElementByXPath("//span[@id=\"createNewLabel\"]"));	
@@ -78,8 +78,8 @@ public class TestCase10 extends BaseClass {
 	}
 		
 		@DataProvider()
-		public String[][] sendData() {
-			String[][] data = new String[1][5];
+		public Object[][] sendData() {
+			Object[][] data = new Object[1][5];
 
 			data[0][0] = "test1234";
 			data[0][1] = "test";

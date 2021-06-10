@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -49,13 +50,18 @@ public class TC38 extends BaseClass {
 		driver.findElementByXPath("//button[@type=\"button\"and @title=\"Delete\"]//span[text()='Delete']").click();
 		Thread.sleep(3000);
 	
+		SoftAssert asert=new SoftAssert();
+			
 		String str = driver.findElementByXPath("//div[@class=\"slds-align-middle slds-hyphenate\"]//span").getText();
-		if(str.matches("Dashboard was deleted.")) {
-			System.out.println("Test case Passed!!!");
+    	if(str.matches("ashboard was deleted.")) {
+//			System.out.println("Test case Passed!!!");
+    		asert.assertTrue(true);
 		} else {
-			System.out.println("Test case Failed!!!");
+			//System.out.println("Test case Failed!!!");
+			asert.assertFalse(false);
 		}
 		
+		asert.assertAll();
 	}
 
 }

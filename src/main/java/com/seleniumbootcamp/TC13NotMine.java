@@ -28,10 +28,10 @@ public class TC13NotMine {
 		driver.findElementById("password").sendKeys("India@123");
 		driver.findElementById("Login").click();
 		Thread.sleep(13000);
-//		List<WebElement> lightningSwitch = driver.findElementsByXPath("//a[@class='switch-to-lightning']"); 
-//		if(lightningSwitch.size() !=0) 
-//		{
-//			driver.findElementByXPath("//a[@class='switch-to-lightning']").click();
+		List<WebElement> lightningSwitch = driver.findElementsByXPath("//a[@class='switch-to-lightning']"); 
+		if(lightningSwitch.size() !=0) 
+		{
+			driver.findElementByXPath("//a[@class='switch-to-lightning']").click();
 		Thread.sleep(5000);
 		driver.executeScript("arguments[0].click();", driver.findElementByXPath(
 				"//button[@class=\"bare slds-icon-waffle_container slds-context-bar__button slds-button uiButton forceHeaderButton salesforceIdentityAppLauncherHeader\" and @type=\"button\"]"));
@@ -48,7 +48,7 @@ public class TC13NotMine {
 		List<String> listAccountName = new ArrayList<String>();
 		for (int i = 1; i <= rows.size(); i++) {
 			String accountName = driver.findElementByXPath("//tbody/tr[" + i + "]/th//a").getText();
-			System.out.println(accountName);
+			//System.out.println("accountName"+accountName);
 			listAccountName.add(accountName);
 		}
 		Thread.sleep(2000);
@@ -73,4 +73,4 @@ public class TC13NotMine {
 			System.out.println("Acount Name are displayed in the Ascending order");
 		}
 	}
-}
+	}}
